@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Postfix Expression Calculation | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="后缀表达式转换及计算6.20  数据结构作业1 F 题目描述给出一个中缀表达式，输出该表达式的后缀表达式。输入占一行，一个中缀表达式（运算符只有+-*&#x2F;，最多1000个字符），输出后缀表达式。输出输出后缀表达式。样例输入 复制(56-20)&#x2F;(4+2)样例输出 复制56 20 - 4 2 + &#x2F;提示 来源&#x2F;分类栈 注意：1、目前还有很多不懂的地方，需要单独看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Postfix Expression Calculation">
+<meta property="og:url" content="http://example.com/2025/06/20/Postfix-Expression-Calculation/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="后缀表达式转换及计算6.20  数据结构作业1 F 题目描述给出一个中缀表达式，输出该表达式的后缀表达式。输入占一行，一个中缀表达式（运算符只有+-*&#x2F;，最多1000个字符），输出后缀表达式。输出输出后缀表达式。样例输入 复制(56-20)&#x2F;(4+2)样例输出 复制56 20 - 4 2 + &#x2F;提示 来源&#x2F;分类栈 注意：1、目前还有很多不懂的地方，需要单独看">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-20T12:58:13.000Z">
+<meta property="article:modified_time" content="2025-06-20T13:04:25.657Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Postfix-Expression-Calculation" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/20/Postfix-Expression-Calculation/" class="article-date">
+  <time class="dt-published" datetime="2025-06-20T12:58:13.000Z" itemprop="datePublished">2025-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Postfix Expression Calculation
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="后缀表达式转换及计算"><a href="#后缀表达式转换及计算" class="headerlink" title="后缀表达式转换及计算"></a>后缀表达式转换及计算</h1><p>6.20  数据结构作业1 F</p>
+<p>题目描述<br>给出一个中缀表达式，输出该表达式的后缀表达式。<br>输入<br>占一行，一个中缀表达式（运算符只有+-*&#x2F;，最多1000个字符），输出后缀表达式。<br>输出<br>输出后缀表达式。<br>样例输入 复制<br>(56-20)&#x2F;(4+2)<br>样例输出 复制<br>56 20 - 4 2 + &#x2F;<br>提示</p>
+<p>来源&#x2F;分类<br>栈</p>
+<p>注意：<br>1、目前还有很多不懂的地方，需要单独看一下</p>
+<p>代码展示</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Express</span></span><br><span class="line">&#123;</span><br><span class="line">	string exp;</span><br><span class="line">	string postexp;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Express</span>(string str)</span><br><span class="line">	&#123;</span><br><span class="line">		exp = str;</span><br><span class="line">		postexp = <span class="string">&quot;&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">string <span class="title">Getpostexp</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> postexp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Trans</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		stack&lt;<span class="type">char</span>&gt; opor;</span><br><span class="line">		<span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">		<span class="type">char</span> ch, e;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; exp.<span class="built_in">length</span>())</span><br><span class="line">		&#123;</span><br><span class="line">			ch = exp[i];</span><br><span class="line">			<span class="keyword">if</span> (ch == <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">				opor.<span class="built_in">push</span>(ch);</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">while</span> (!opor.<span class="built_in">empty</span>() &amp;&amp; opor.<span class="built_in">top</span>() != <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					e = opor.<span class="built_in">top</span>();</span><br><span class="line">					opor.<span class="built_in">pop</span>();</span><br><span class="line">					postexp += e;</span><br><span class="line">				&#125;</span><br><span class="line">				opor.<span class="built_in">pop</span>();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;+&#x27;</span> || ch == <span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">while</span> (!opor.<span class="built_in">empty</span>() &amp;&amp; opor.<span class="built_in">top</span>() != <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					e = opor.<span class="built_in">top</span>();</span><br><span class="line">					opor.<span class="built_in">pop</span>();</span><br><span class="line">					postexp += e;</span><br><span class="line">				&#125;</span><br><span class="line">				opor.<span class="built_in">push</span>(ch);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;*&#x27;</span> || ch == <span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">while</span> (!opor.<span class="built_in">empty</span>() &amp;&amp; opor.<span class="built_in">top</span>() != <span class="string">&#x27;(&#x27;</span> &amp;&amp; (opor.<span class="built_in">top</span>() == <span class="string">&#x27;*&#x27;</span> || opor.<span class="built_in">top</span>() == <span class="string">&#x27;/&#x27;</span>))</span><br><span class="line">				&#123;</span><br><span class="line">					e = opor.<span class="built_in">top</span>();</span><br><span class="line">					opor.<span class="built_in">pop</span>();</span><br><span class="line">					postexp += e;</span><br><span class="line">				&#125;</span><br><span class="line">				opor.<span class="built_in">push</span>(ch);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				string d = <span class="string">&quot;&quot;</span>;</span><br><span class="line">				<span class="keyword">while</span> (ch &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					d += ch;<span class="comment">//提取多位数的方法</span></span><br><span class="line">					i++;</span><br><span class="line">					<span class="keyword">if</span> (i &lt; exp.<span class="built_in">length</span>())</span><br><span class="line">						ch = exp[i];</span><br><span class="line">					<span class="keyword">else</span></span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				i--;</span><br><span class="line">				postexp += d;</span><br><span class="line">				postexp += <span class="string">&quot;#&quot;</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (!opor.<span class="built_in">empty</span>())</span><br><span class="line">		&#123;</span><br><span class="line">			e = opor.<span class="built_in">top</span>();</span><br><span class="line">			opor.<span class="built_in">pop</span>();</span><br><span class="line">			postexp += e;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">double</span> <span class="title">GetValue</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		stack&lt;<span class="type">double</span>&gt; opand;</span><br><span class="line">		<span class="type">double</span> a, b, c, d;</span><br><span class="line">		<span class="type">char</span> ch;</span><br><span class="line">		<span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; postexp.<span class="built_in">length</span>())</span><br><span class="line">		&#123;</span><br><span class="line">			ch = postexp[i];</span><br><span class="line">			<span class="keyword">switch</span> (ch)</span><br><span class="line">			&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">				a = opand.<span class="built_in">top</span>();opand.<span class="built_in">pop</span>();</span><br><span class="line">				b = opand.<span class="built_in">top</span>();opand.<span class="built_in">pop</span>();</span><br><span class="line">				c = a + b;</span><br><span class="line">				opand.<span class="built_in">push</span>(c);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">				a = opand.<span class="built_in">top</span>();opand.<span class="built_in">pop</span>();</span><br><span class="line">				b = opand.<span class="built_in">top</span>();opand.<span class="built_in">pop</span>();</span><br><span class="line">				c = a - b;</span><br><span class="line">				opand.<span class="built_in">push</span>(c);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">					a = opand.<span class="built_in">top</span>();opand.<span class="built_in">pop</span>();</span><br><span class="line">					b = opand.<span class="built_in">top</span>();opand.<span class="built_in">pop</span>();</span><br><span class="line">					c = a * b;</span><br><span class="line">					opand.<span class="built_in">push</span>(c);</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">				a = opand.<span class="built_in">top</span>();opand.<span class="built_in">pop</span>();</span><br><span class="line">				b = opand.<span class="built_in">top</span>();opand.<span class="built_in">pop</span>();</span><br><span class="line">				c = a / b;</span><br><span class="line">				opand.<span class="built_in">push</span>(c);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				d = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">while</span> (ch &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					d = <span class="number">10</span> * d + (ch - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">					i++;</span><br><span class="line">					ch = postexp[i];</span><br><span class="line">				&#125;</span><br><span class="line">				opand.<span class="built_in">push</span>(d);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> opand.<span class="built_in">top</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string str;</span><br><span class="line">	cin &gt;&gt; str;</span><br><span class="line">	<span class="function">Express <span class="title">expr</span><span class="params">(str)</span></span>;</span><br><span class="line">	expr.<span class="built_in">Trans</span>();</span><br><span class="line">	string str1 = expr.<span class="built_in">Getpostexp</span>();</span><br><span class="line">	cout &lt;&lt; str1 &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; expr.<span class="built_in">GetValue</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc4tomc9000324rm9iqv0lmo" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/06/20/Josephus-Sequence/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Josephus Sequence</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/06/20/Postfix-Expression-Calculation/">Postfix Expression Calculation</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/Josephus-Sequence/">Josephus Sequence</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/Maximum-Count/">Maximum Count</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/Insert-Data/">Insert Data</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/20/my-first-blog/">my first blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
