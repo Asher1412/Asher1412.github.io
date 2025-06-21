@@ -71,6 +71,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Creation-and-Traversal-of-Binary-Trees" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" class="article-date">
+  <time class="dt-published" datetime="2025-06-21T05:16:34.000Z" itemprop="datePublished">2025-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/06/21/Creation-and-Traversal-of-Binary-Trees/">Creation and Traversal of Binary Trees</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h1><p>题目描述</p>
+<p>树形结构是一类重要的非线性数据结构，其中以树和二叉树最为常用。对于每一个结点至多只有两棵子树的一类树，称其为二叉树。二叉树的链式存储结构是一类重要的数据结构，其形式定义如下：</p>
+<p>而二叉树的前序、中序遍历是非常重要的能够访问二叉树所有结点的算法，下面分别列出一种先序遍历和两种中序遍历的算法。</p>
+<p>第一种中序遍历的方法（算法6.3）：</p>
+<p>第二种中序遍历的方法（算法6.2）：</p>
+<p>通过读入一个字符串，建立二叉树的算法如下：</p>
+<p>在本题中，将会给出一个按照先序遍历得出的字符串，空格代表空的子节点，大写字母代表节点内容。请通过这个字符串建立二叉树，并按照题目描述中的一种先序遍历和两种中序遍历的算法分别输出每一个非空节点。</p>
+<p>输入<br>输入只有一行，包含一个字符串S，用来建立二叉树。保证S为合法的二叉树先序遍历字符串，节点内容只有大写字母，且S的长度不超过100。<br>输出<br>共有三行，每一行包含一串字符，表示分别按先序、中序、中序得出的节点内容，每个字母后输出一个空格。请注意行尾输出换行。<br>样例输入 复制<br>ABC  DE G  F<br>样例输出 复制<br>A B C D E G F<br>C B E G D F A<br>C B E G D F A </p>
+<p>提示<br>遍历是二叉树各种操作的基础，可以在遍历的过程中对节点进行各种操作。通过二叉树的遍历，可以建立二叉树。而先序、中序和后序遍历分别具有各自的特点，是探索二叉树性质的绝佳“武器”。</p>
+<p>来源&#x2F;分类<br>数据结构高分笔记</p>
+<p>注意：<br>1、二叉树建立和遍历过程中递归的循环控制，不要反复调用head指针<br>2、建立bool类型InputEnded变量作为输入停止标记</p>
+<p>代码展示</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Nil <span class="string">&#x27; &#x27;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">BTNode</span> &#123;</span><br><span class="line">    <span class="type">char</span> data;</span><br><span class="line">    BTNode* lchild;</span><br><span class="line">    BTNode* rchild;</span><br><span class="line">    <span class="built_in">BTNode</span>() : <span class="built_in">lchild</span>(<span class="literal">NULL</span>), <span class="built_in">rchild</span>(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">BTNode</span>(<span class="type">char</span> d) : <span class="built_in">data</span>(d), <span class="built_in">lchild</span>(<span class="literal">NULL</span>), <span class="built_in">rchild</span>(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BTree</span> &#123;</span><br><span class="line">    BTNode* r;</span><br><span class="line">    <span class="type">bool</span> inputEnded; <span class="comment">// 标记输入是否已结束</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 递归创建二叉树（处理回车/换行停止条件）</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">CreateBTreeRecur</span><span class="params">(BTNode*&amp; T)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (inputEnded) &#123;</span><br><span class="line">            T = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">char</span> ch = cin.<span class="built_in">get</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 检查输入结束条件（回车或换行）</span></span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">&#x27;\n&#x27;</span> || ch == <span class="string">&#x27;\r&#x27;</span> || ch == EOF) &#123;</span><br><span class="line">            inputEnded = <span class="literal">true</span>;</span><br><span class="line">            T = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (ch == Nil) &#123;</span><br><span class="line">            T = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            T = <span class="keyword">new</span> <span class="built_in">BTNode</span>(ch);</span><br><span class="line">            <span class="keyword">if</span> (!T) <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">            <span class="built_in">CreateBTreeRecur</span>(T-&gt;lchild);</span><br><span class="line">            <span class="built_in">CreateBTreeRecur</span>(T-&gt;rchild);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 先序遍历（递归）</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">PreOrderRecur</span><span class="params">(BTNode* b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (b != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            cout &lt;&lt; b-&gt;data &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            <span class="built_in">PreOrderRecur</span>(b-&gt;lchild);</span><br><span class="line">            <span class="built_in">PreOrderRecur</span>(b-&gt;rchild);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 中序遍历（递归）</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">InOrderRecur</span><span class="params">(BTNode* b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (b != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="built_in">InOrderRecur</span>(b-&gt;lchild);</span><br><span class="line">            cout &lt;&lt; b-&gt;data &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            <span class="built_in">InOrderRecur</span>(b-&gt;rchild);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">BTree</span>() : <span class="built_in">r</span>(<span class="literal">NULL</span>), <span class="built_in">inputEnded</span>(<span class="literal">false</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公有接口：创建二叉树</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">CreateBTree</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        inputEnded = <span class="literal">false</span>; <span class="comment">// 重置输入结束标记</span></span><br><span class="line">        <span class="built_in">CreateBTreeRecur</span>(r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公有接口：先序遍历</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">PreOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">PreOrderRecur</span>(r);</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 公有接口：中序遍历</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">InOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">InOrderRecur</span>(r);</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    BTree bt;</span><br><span class="line">    bt.<span class="built_in">CreateBTree</span>();</span><br><span class="line">    bt.<span class="built_in">PreOrder</span>(); <span class="comment">// 先序遍历</span></span><br><span class="line">    bt.<span class="built_in">InOrder</span>();  <span class="comment">// 第一次中序遍历</span></span><br><span class="line">    bt.<span class="built_in">InOrder</span>();  <span class="comment">// 第二次中序遍历</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmc5sqbu90000cwrm2rq3atei" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-String-Reverse" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/06/20/String-Reverse/" class="article-date">
@@ -107,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmc5s74xa0002o4rm7db7em5y" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmc5sqbue0004cwrm822s1y8g" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -150,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc5s74x80001o4rmc5gk5xsc" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc5sqbuc0001cwrm0mjv2ujk" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -194,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmc5s74x50000o4rmbeo6290e" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmc5sqbud0002cwrm8rb3e37b" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -236,7 +286,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmc5s74xc0006o4rmcygzb5wc" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmc5sqbuf0007cwrm01m078t3" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -277,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmc5s74xb0004o4rm3qs96id0" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmc5sqbue0003cwrmbo5q1kw3" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -324,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmc5s74xc0005o4rmaq6ahp3j" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmc5sqbuf0006cwrmductd137" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -375,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/19/hello-world/" data-id="cmc5s74xb0003o4rm9njp76p5" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/19/hello-world/" data-id="cmc5sqbue0005cwrm31hway6d" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -418,6 +468,10 @@
       <ul>
         
           <li>
+            <a href="/2025/06/21/Creation-and-Traversal-of-Binary-Trees/">Creation and Traversal of Binary Trees</a>
+          </li>
+        
+          <li>
             <a href="/2025/06/20/String-Reverse/">String Reverse</a>
           </li>
         
@@ -431,10 +485,6 @@
         
           <li>
             <a href="/2025/06/20/Maximum-Count/">Maximum Count</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/20/Insert-Data/">Insert Data</a>
           </li>
         
       </ul>
