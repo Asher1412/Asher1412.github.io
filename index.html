@@ -71,6 +71,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Parentheses-mismatch-check" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/22/Parentheses-mismatch-check/" class="article-date">
+  <time class="dt-published" datetime="2025-06-22T06:37:08.000Z" itemprop="datePublished">2025-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/06/22/Parentheses-mismatch-check/">Parentheses mismatch check</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="括号配对"><a href="#括号配对" class="headerlink" title="括号配对"></a>括号配对</h1><p>题目描述<br>设计一个算法利用顺序栈检查用户输入的表达式中括号是否配对（假设表达式中可能含有圆括号()、中括号[]和大括号{}）。<br>输入<br>占一行为含有三种括号的表达式（最长100个符号）。<br>输出<br>匹配时输出YES，小括号不匹配输出NO1，中括号不匹配时输出NO2，大括号不匹配时输出NO3。<br>样例输入<br>{([a])}<br>样例输出<br>YES<br>来源&#x2F;分类<br>栈</p>
+<p>注意：</p>
+<p>代码展示</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">kuohao</span><span class="params">(string s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    stack &lt;<span class="type">char</span>&gt;st;</span><br><span class="line">    <span class="type">char</span> ch, e;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, k = <span class="number">0</span>;<span class="comment">//用k判断是否空栈，若栈空，则k=1</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; s.<span class="built_in">length</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        ch = s[i];</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">&#x27;(&#x27;</span> || ch == <span class="string">&#x27;&#123;&#x27;</span> || ch == <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">            st.<span class="built_in">push</span>(ch);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (st.<span class="built_in">empty</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;]&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;&#125;&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!st.<span class="built_in">empty</span>() &amp;&amp; st.<span class="built_in">top</span>() == <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!st.<span class="built_in">empty</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                e = st.<span class="built_in">top</span>();</span><br><span class="line">                k = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;]&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!st.<span class="built_in">empty</span>() &amp;&amp; st.<span class="built_in">top</span>() == <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!st.<span class="built_in">empty</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                e = st.<span class="built_in">top</span>();</span><br><span class="line">                k = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;&#125;&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!st.<span class="built_in">empty</span>() &amp;&amp; st.<span class="built_in">top</span>() == <span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!st.<span class="built_in">empty</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                e = st.<span class="built_in">top</span>();</span><br><span class="line">                k = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (e == <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (e == <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (e == <span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (st.<span class="built_in">empty</span>() &amp;&amp; i == s.<span class="built_in">length</span>())</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        e = st.<span class="built_in">top</span>();</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    <span class="type">int</span> m = <span class="built_in">kuohao</span>(s);</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">4</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;YES&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">1</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;NO1&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">2</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;NO2&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">3</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;NO3&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmc7aswrt0001ccrm9gzkgjwd" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Huffman-Tree" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/06/21/Huffman-Tree/" class="article-date">
@@ -100,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmc5xmxrk00036wrm23zg9a23" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmc7aswru0002ccrmcdl7ee9c" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -150,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmc5xmxrd00006wrmevyv7oq5" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmc7aswrp0000ccrmdkgwbmjb" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -198,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmc5xmxrl00066wrm8xxb0p0g" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmc7aswry0009ccrmeinb2etz" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -241,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc5xmxrl00056wrmcrmqdar9" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc7aswrx0008ccrm26elf8uu" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -285,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmc5xmxrj00026wrm22hmhr64" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmc7aswrw0006ccrmdp5ccnhj" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -327,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmc5xmxrk00046wrm0ufm3hpd" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmc7aswrw0005ccrm18dg9f1j" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -368,7 +409,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmc5xmxri00016wrmafaa47v8" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmc7aswrv0003ccrmcq5sbtyh" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -415,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmc5xmxrm00086wrmcqb5hg79" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmc7aswrx0007ccrm2n813ba8" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -466,7 +507,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/19/hello-world/" data-id="cmc5xmxrl00076wrmazt79psd" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/19/hello-world/" data-id="cmc7aswrv0004ccrmh417armq" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -509,6 +550,10 @@
       <ul>
         
           <li>
+            <a href="/2025/06/22/Parentheses-mismatch-check/">Parentheses mismatch check</a>
+          </li>
+        
+          <li>
             <a href="/2025/06/21/Huffman-Tree/">Huffman Tree</a>
           </li>
         
@@ -522,10 +567,6 @@
         
           <li>
             <a href="/2025/06/20/Postfix-Expression-Calculation/">Postfix Expression Calculation</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/20/Josephus-Sequence/">Josephus Sequence</a>
           </li>
         
       </ul>
