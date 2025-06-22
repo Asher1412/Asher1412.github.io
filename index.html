@@ -71,6 +71,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-shortest-path" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/22/shortest-path/" class="article-date">
+  <time class="dt-published" datetime="2025-06-22T06:46:49.000Z" itemprop="datePublished">2025-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/06/22/shortest-path/">shortest-path</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="迷宫问题最短路径"><a href="#迷宫问题最短路径" class="headerlink" title="迷宫问题最短路径"></a>迷宫问题最短路径</h1><p>题目描述<br>一个迷宫地图中，多个房间由单向通道相连，房间号从1到N依次编号。你能编程求解任意房间间的最短路径长度吗？</p>
+<p>输入<br>第一行是迷宫中的房间数N和单项通道数M（0&lt;N,M&lt;100），接下来M行，每行三个数x,y,z，表示一个通道是从x到y,且通道长度是z(z&lt;1000）。</p>
+<p>最后一行是start和end，分别是起点房间号和终点房间号。</p>
+<p>输出<br>输出起点房间号和终点房间号间的最短路径长度。如果没有通路，输出STOP。</p>
+<p>样例输入<br>7 9<br>1 2 3<br>1 3 2<br>3 4 2<br>6 3 1<br>2 6 3<br>6 7 6<br>2 5 4<br>5 4 2<br>5 7 5<br>1 7<br>样例输出<br>12</p>
+<p>注意：<br>1、采用了图的方式数据化具有实际意义的题目</p>
+<p>代码展示</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXV = <span class="number">105</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ArcNode</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> adjvex;</span><br><span class="line">    <span class="type">int</span> weight;</span><br><span class="line">    ArcNode* nexarc;</span><br><span class="line">    <span class="built_in">ArcNode</span>() : <span class="built_in">nexarc</span>(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">ArcNode</span>(<span class="type">int</span> adj, <span class="type">int</span> w) : <span class="built_in">adjvex</span>(adj), <span class="built_in">weight</span>(w), <span class="built_in">nexarc</span>(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;<span class="comment">//图的结点结构体</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HNode</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> head;<span class="comment">//head变量记录作为起始点结点的序号</span></span><br><span class="line">    ArcNode* firstarc;<span class="comment">//ArcNode类指针连接起始点结点的邻接点们</span></span><br><span class="line">&#125;;<span class="comment">//图的邻接表存储方法中表头结点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AdjGraph</span> </span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    HNode adjlist[MAXV];<span class="comment">//图的邻接表存储方法中表头数组，负责关联调用不同的作为起始点的图结点</span></span><br><span class="line">    <span class="type">int</span> n, e;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; visited;<span class="comment">//visited数组作为标识记录是否访问过标号为i的结点，防止在回路内绕圈</span></span><br><span class="line">    <span class="type">int</span> min_path;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">AdjGraph</span>() : <span class="built_in">n</span>(<span class="number">0</span>), <span class="built_in">e</span>(<span class="number">0</span>), <span class="built_in">min_path</span>(INT_MAX) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAXV; i++) </span><br><span class="line">        &#123;</span><br><span class="line">            adjlist[i].head = i;</span><br><span class="line">            adjlist[i].firstarc = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        visited.<span class="built_in">resize</span>(MAXV, <span class="number">0</span>);</span><br><span class="line">    &#125;<span class="comment">//构造函数循环初始化表头结构体数组，和visited访问数组</span></span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">AdjGraph</span>() </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAXV; i++) </span><br><span class="line">        &#123;</span><br><span class="line">            ArcNode* p = adjlist[i].firstarc;</span><br><span class="line">            <span class="keyword">while</span> (p != <span class="literal">NULL</span>) </span><br><span class="line">            &#123;</span><br><span class="line">                ArcNode* temp = p;</span><br><span class="line">                p = p-&gt;nexarc;</span><br><span class="line">                <span class="keyword">delete</span> temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">CreateAdjGraph</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; e;</span><br><span class="line">        <span class="type">int</span> a, b, c;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; e; i++) </span><br><span class="line">        &#123;</span><br><span class="line">            cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">            <span class="comment">// 尾插法添加边 a-&gt;b</span></span><br><span class="line">            ArcNode* p = <span class="keyword">new</span> <span class="built_in">ArcNode</span>(b, c);</span><br><span class="line">            p-&gt;nexarc = adjlist[a].firstarc;</span><br><span class="line">            adjlist[a].firstarc = p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">DFS</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end, <span class="type">int</span> path_length)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        visited[start] = <span class="number">1</span>;<span class="comment">//visited数组对应序号的元素改为1，表示已访问</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (start == end) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (path_length &lt; min_path) </span><br><span class="line">            &#123;</span><br><span class="line">                min_path = path_length;<span class="comment">//比较更新最短路径长度</span></span><br><span class="line">            &#125;</span><br><span class="line">            visited[start] = <span class="number">0</span>; <span class="comment">// 回溯visited对应序号元素，使可以再次访问此结点</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ArcNode* p = adjlist[start].firstarc;</span><br><span class="line">        <span class="keyword">while</span> (p != <span class="literal">NULL</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> w = p-&gt;adjvex;</span><br><span class="line">            <span class="keyword">if</span> (!visited[w]) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">DFS</span>(w, end, path_length + p-&gt;weight);<span class="comment">//递归访问邻接点及邻接点的邻接点，同时更新本路径长度</span></span><br><span class="line">            &#125;</span><br><span class="line">            p = p-&gt;nexarc;</span><br><span class="line">        &#125;</span><br><span class="line">        visited[start] = <span class="number">0</span>; <span class="comment">// p==NULL，访问结束，回溯，改回visited数组，使可再次访问本结点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    AdjGraph G;</span><br><span class="line">    G.<span class="built_in">CreateAdjGraph</span>();</span><br><span class="line">    <span class="type">int</span> x, y;</span><br><span class="line">    cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">    G.<span class="built_in">DFS</span>(x, y, <span class="number">0</span>);<span class="comment">//初始路径长度为0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (G.min_path == INT_MAX) </span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;STOP&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; G.min_path &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/06/22/shortest-path/" data-id="cmc7bnul50009zkrmdqu27my1" data-title="shortest-path" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Parentheses-mismatch-check" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/06/22/Parentheses-mismatch-check/" class="article-date">
@@ -100,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmc7aswrt0001ccrm9gzkgjwd" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmc7bnul6000azkrm6qii5h53" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -141,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmc7aswru0002ccrmcdl7ee9c" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmc7bnul10001zkrmcqav6zam" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -191,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmc7aswrp0000ccrmdkgwbmjb" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmc7bnuky0000zkrm143bdg96" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -239,7 +286,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmc7aswry0009ccrmeinb2etz" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmc7bnul30003zkrm9dcca9n2" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -282,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc7aswrx0008ccrm26elf8uu" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc7bnul50008zkrm1jh22saa" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -326,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmc7aswrw0006ccrmdp5ccnhj" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmc7bnul40006zkrme31ccv92" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -368,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmc7aswrw0005ccrm18dg9f1j" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmc7bnul30004zkrm355j8k7x" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -409,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmc7aswrv0003ccrmcq5sbtyh" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmc7bnul20002zkrm059wcp38" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -456,58 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmc7aswrx0007ccrm2n813ba8" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/06/19/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-06-19T07:49:36.278Z" itemprop="datePublished">2025-06-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/06/19/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/19/hello-world/" data-id="cmc7aswrv0004ccrmh417armq" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmc7bnul40007zkrmgyb590bt" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -520,6 +516,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -550,6 +551,10 @@
       <ul>
         
           <li>
+            <a href="/2025/06/22/shortest-path/">shortest-path</a>
+          </li>
+        
+          <li>
             <a href="/2025/06/22/Parentheses-mismatch-check/">Parentheses mismatch check</a>
           </li>
         
@@ -563,10 +568,6 @@
         
           <li>
             <a href="/2025/06/20/String-Reverse/">String Reverse</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/20/Postfix-Expression-Calculation/">Postfix Expression Calculation</a>
           </li>
         
       </ul>
