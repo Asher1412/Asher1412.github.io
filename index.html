@@ -71,6 +71,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MST-Prim-Algorithm" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/22/MST-Prim-Algorithm/" class="article-date">
+  <time class="dt-published" datetime="2025-06-22T08:15:18.000Z" itemprop="datePublished">2025-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/06/22/MST-Prim-Algorithm/">MST Prim Algorithm</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="普里姆算法-Prim）求最小生成树（MST"><a href="#普里姆算法-Prim）求最小生成树（MST" class="headerlink" title="普里姆算法(Prim）求最小生成树（MST)"></a>普里姆算法(Prim）求最小生成树（MST)</h1><p>6.22  数据结构实验3 E</p>
+<p>题目描述<br>最小生成树问题是实际生产生活中十分重要的一类问题。假设需要在n个城市之间建立通信联络网，则连通n个城市只需要n-1条线路。这时，自然需要考虑这样一个问题，即如何在最节省经费的前提下建立这个通信网。<br>可以用连通网来表示n个城市以及n个城市之间可能设置的通信线路，其中网的顶点表示城市，边表示两个城市之间的线路，赋于边的权值表示相应的代价。对于n个顶点的连通网可以建立许多不同的生成树，每一棵生成树都可以是一个通信网。现在，需要选择一棵生成树，使总的耗费最小。这个问题就是构造连通网的最小代价生成树，简称最小生成树。一棵生成树的代价就是树上各边的代价之和。<br>而在常用的最小生成树构造算法中，普里姆（Prim）算法是一种非常常用的算法。以下是其算法的大致结构：</p>
+<p>在本题中，读入一个无向图的邻接矩阵（即数组表示），建立无向图并按照以上描述中的算法建立最小生成树，并输出最小生成树的代价。</p>
+<p>输入<br>输入的第一行包含一个正整数n，表示图中共有n个顶点。其中n不超过50。<br>以后的n行中每行有n个用空格隔开的整数，对于第i行的第j个整数，如果不为0，则表示第i个顶点和第j个顶点有直接连接且代价为相应的值，0表示没有直接连接。当i和j相等的时候，保证对应的整数为0。<br>输入保证邻接矩阵为对称矩阵，即输入的图一定是无向图，且保证图中只有一个连通分量。<br>输出<br>只有一个整数，即最小生成树的总代价。请注意行尾输出换行。<br>样例输入<br>4<br>0 2 4 0<br>2 0 3 5<br>4 3 0 1<br>0 5 1 0<br>样例输出<br>6<br>提示<br>在本题中，需要掌握图的深度优先遍历的方法，并需要掌握无向图的连通性问题的本质。通过求出无向图的连通分量和对应的生成树，应该能够对图的连通性建立更加直观和清晰的概念。<br>来源&#x2F;分类<br>数据结构高分笔记</p>
+<p>注意：<br>1、对不连通的路径对应的lowcost数组赋初值INF，否则直接认为是零表示已加入</p>
+<p>代码展示</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXV = <span class="number">55</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MatGraph</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> edges[MAXV][MAXV];</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">MatGraph</span>(<span class="type">int</span> n1) &#123;</span><br><span class="line">        n = n1;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                cin &gt;&gt; edges[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">Prim</span><span class="params">(<span class="type">int</span> v)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> lowcost[MAXV];  <span class="comment">// 存储到最小权值</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化lowcost数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="comment">// 将0（无连接）转换为INF</span></span><br><span class="line">            lowcost[i] = (edges[v][i] == <span class="number">0</span>) ? INF : edges[v][i];<span class="comment">//若没有这一步，则会直接认为不连通的结点i已加入生成子树</span></span><br><span class="line">        &#125;</span><br><span class="line">        lowcost[v] = <span class="number">0</span>;  <span class="comment">// 起点已加入MST</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 循环添加n-1个节点</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> min = INF;</span><br><span class="line">            <span class="type">int</span> k = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 寻找最小权值的边</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (lowcost[j] != <span class="number">0</span> &amp;&amp; lowcost[j] &lt; min) &#123;</span><br><span class="line">                    min = lowcost[j];</span><br><span class="line">                    k = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 更新结果</span></span><br><span class="line">            sum += min;</span><br><span class="line">            lowcost[k] = <span class="number">0</span>;  <span class="comment">// 标记节点已加入MST</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 更新邻接节点的权值</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="comment">// 跳过已加入MST的节点</span></span><br><span class="line">                <span class="keyword">if</span> (lowcost[j] != <span class="number">0</span> &amp;&amp; edges[k][j] != <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="comment">// 更新为更小的权值</span></span><br><span class="line">                    <span class="keyword">if</span> (edges[k][j] &lt; lowcost[j]) &#123;</span><br><span class="line">                        lowcost[j] = edges[k][j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="function">MatGraph <span class="title">graph</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="type">int</span> result = graph.<span class="built_in">Prim</span>(<span class="number">0</span>);</span><br><span class="line">    cout &lt;&lt; result &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/06/22/MST-Prim-Algorithm/" data-id="cmc7edxqn00023krm836weg9k" data-title="MST Prim Algorithm" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-shortest-path" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/06/22/shortest-path/" class="article-date">
@@ -107,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/shortest-path/" data-id="cmc7bxm7f0008dcrman4z0p6o" data-title="shortest-path" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/shortest-path/" data-id="cmc7edxqs000b3krmbxxzd7nt" data-title="shortest-path" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -149,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmc7bxm7d0004dcrm5gc92sig" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmc7edxqp00043krmfega2aqd" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -191,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmc7bxm7b0001dcrm40n10cy2" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmc7edxqi00003krm2ray3wlq" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -242,7 +286,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmc7bxm780000dcrmeixoaauk" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmc7edxqm00013krmg5ky5sb1" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -291,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmc7bxm7g000adcrm81ir9afz" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmc7edxqq00083krm8n9pgq9r" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -334,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc7bxm7e0006dcrm3ysfcyvb" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc7edxqq00073krme3sk28y3" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -378,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmc7bxm7e0005dcrm21283klv" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmc7edxqp00053krmc9gbg7a3" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -420,7 +464,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmc7bxm7c0003dcrm5wpq82bj" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmc7edxqq00063krm4ohnhjmz" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -461,55 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmc7bxm7c0002dcrmh85lbngn" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-my-first-blog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/06/20/my-first-blog/" class="article-date">
-  <time class="dt-published" datetime="2025-06-20T05:31:20.000Z" itemprop="datePublished">2025-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/06/20/my-first-blog/">my first blog</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="二路归并"><a href="#二路归并" class="headerlink" title="二路归并"></a>二路归并</h1><p>6.20  数据结构作业1 C</p>
-<p>题目描述<br>    有两个按元素值递增有序的整数顺序表A和B，设计一个算法将顺序表A和B的全部元素合并到一个递增有序顺序表C中，并依次输出C中的元素。<br>输入<br>    占两行，依次是A和B的序列（元素个数都小于100）。<br>输出<br>    依次输出C中的元素。</p>
-<p>样例输入<br>    1 2 3 4 5<br>    1 2 3 4 6<br>样例输出<br>    1 1 2 2 3 3 4 4 5 6<br>来源&#x2F;分类<br>    线性表</p>
-<p>难点：<br>1、数据读取要求数字不一定是一个字符，空格跳过，回车结束<br>2、二路归并双指针线性表</p>
-<p>代码展示</p>
-<p>方案一：get函数读取string类后，通过stringstream转换成输入流，逐一读取数字</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">guibing</span><span class="params">(string p, string q)</span> </span>&#123;</span><br><span class="line">    <span class="function">stringstream <span class="title">s1</span><span class="params">(p)</span>, <span class="title">s2</span><span class="params">(q)</span></span>;<span class="comment">//stringstream流建立对象s1,s2作为输入流</span></span><br><span class="line">    <span class="type">int</span> num1, num2;</span><br><span class="line">    <span class="type">bool</span> has1 = (s1 &gt;&gt; num1) ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">    <span class="type">bool</span> has2 = (s2 &gt;&gt; num2) ? <span class="literal">true</span> : <span class="literal">false</span>;   </span><br><span class="line">    <span class="comment">// 初始化第二个流，用运算符提前判定是否获取成功，而不是在while(ss&gt;&gt;num1)中进行判断，此方案会导致有数据被读取但是没有被存入ans[i]，数据流失</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (has1 &amp;&amp; has2) &#123;     <span class="comment">// 只要两个流都有数据</span></span><br><span class="line">        <span class="keyword">if</span> (num1 &lt; num2) &#123;</span><br><span class="line">            cout &lt;&lt; num1 &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            has1 = (s1 &gt;&gt; num1) ? <span class="literal">true</span> : <span class="literal">false</span>;  <span class="comment">// 读取s1的下一个数</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cout &lt;&lt; num2 &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            has2 = (s2 &gt;&gt; num2) ? <span class="literal">true</span> : <span class="literal">false</span>;  <span class="comment">// 读取s2的下一个数</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 处理剩余元素（仅一个流会有剩余）</span></span><br><span class="line">    <span class="keyword">if</span> (has1) &#123;</span><br><span class="line">        cout &lt;&lt; num1 &lt;&lt; <span class="string">&quot; &quot;</span>;  <span class="comment">// 输出当前已读取的数</span></span><br><span class="line">        <span class="keyword">while</span> (s1 &gt;&gt; num1)    <span class="comment">// 输出s1的剩余数</span></span><br><span class="line">            cout &lt;&lt; num1 &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (has2) &#123;</span><br><span class="line">        cout &lt;&lt; num2 &lt;&lt; <span class="string">&quot; &quot;</span>;  <span class="comment">// 输出当前已读取的数</span></span><br><span class="line">        <span class="keyword">while</span> (s2 &gt;&gt; num2)    <span class="comment">// 输出s2的剩余数</span></span><br><span class="line">            cout &lt;&lt; num2 &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string s1, s2;</span><br><span class="line">    <span class="built_in">getline</span>(cin, s1);</span><br><span class="line">    <span class="built_in">getline</span>(cin, s2);</span><br><span class="line">    <span class="built_in">guibing</span>(s1, s2);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>方案二：三个vector数组获取数字，不断输入，并用cin.get() &#x3D;&#x3D; ‘\n’分割两个数组，需注意vector数组如何使用</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; A, B, C;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 读取顺序表A</span></span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; num) &#123;</span><br><span class="line">        A.<span class="built_in">push_back</span>(num);</span><br><span class="line">        <span class="keyword">if</span> (cin.<span class="built_in">get</span>() == <span class="string">&#x27;\n&#x27;</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 读取顺序表B</span></span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; num) &#123;</span><br><span class="line">        B.<span class="built_in">push_back</span>(num);</span><br><span class="line">        <span class="keyword">if</span> (cin.<span class="built_in">get</span>() == <span class="string">&#x27;\n&#x27;</span> || cin.<span class="built_in">eof</span>()) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 手动合并两个有序数组</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; A.<span class="built_in">size</span>() &amp;&amp; j &lt; B.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i] &lt;= B[j]) &#123;</span><br><span class="line">            C.<span class="built_in">push_back</span>(A[i++]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            C.<span class="built_in">push_back</span>(B[j++]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将剩余元素追加到C</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; A.<span class="built_in">size</span>()) C.<span class="built_in">push_back</span>(A[i++]);</span><br><span class="line">    <span class="keyword">while</span> (j &lt; B.<span class="built_in">size</span>()) C.<span class="built_in">push_back</span>(B[j++]);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 输出结果</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> k = <span class="number">0</span>; k &lt; C.<span class="built_in">size</span>(); ++k) &#123;</span><br><span class="line">        cout &lt;&lt; C[k];</span><br><span class="line">        <span class="keyword">if</span> (k != C.<span class="built_in">size</span>() - <span class="number">1</span>) cout &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmc7bxm7f0009dcrm95493i6l" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmc7edxqo00033krm9uns67mr" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -557,6 +553,10 @@
       <ul>
         
           <li>
+            <a href="/2025/06/22/MST-Prim-Algorithm/">MST Prim Algorithm</a>
+          </li>
+        
+          <li>
             <a href="/2025/06/22/shortest-path/">shortest-path</a>
           </li>
         
@@ -570,10 +570,6 @@
         
           <li>
             <a href="/2025/06/21/Creation-and-Traversal-of-Binary-Trees/">Creation and Traversal of Binary Trees</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/20/String-Reverse/">String Reverse</a>
           </li>
         
       </ul>

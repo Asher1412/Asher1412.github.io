@@ -71,6 +71,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-my-first-blog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/20/my-first-blog/" class="article-date">
+  <time class="dt-published" datetime="2025-06-20T05:31:20.000Z" itemprop="datePublished">2025-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/06/20/my-first-blog/">my first blog</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="二路归并"><a href="#二路归并" class="headerlink" title="二路归并"></a>二路归并</h1><p>6.20  数据结构作业1 C</p>
+<p>题目描述<br>    有两个按元素值递增有序的整数顺序表A和B，设计一个算法将顺序表A和B的全部元素合并到一个递增有序顺序表C中，并依次输出C中的元素。<br>输入<br>    占两行，依次是A和B的序列（元素个数都小于100）。<br>输出<br>    依次输出C中的元素。</p>
+<p>样例输入<br>    1 2 3 4 5<br>    1 2 3 4 6<br>样例输出<br>    1 1 2 2 3 3 4 4 5 6<br>来源&#x2F;分类<br>    线性表</p>
+<p>难点：<br>1、数据读取要求数字不一定是一个字符，空格跳过，回车结束<br>2、二路归并双指针线性表</p>
+<p>代码展示</p>
+<p>方案一：get函数读取string类后，通过stringstream转换成输入流，逐一读取数字</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">guibing</span><span class="params">(string p, string q)</span> </span>&#123;</span><br><span class="line">    <span class="function">stringstream <span class="title">s1</span><span class="params">(p)</span>, <span class="title">s2</span><span class="params">(q)</span></span>;<span class="comment">//stringstream流建立对象s1,s2作为输入流</span></span><br><span class="line">    <span class="type">int</span> num1, num2;</span><br><span class="line">    <span class="type">bool</span> has1 = (s1 &gt;&gt; num1) ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">    <span class="type">bool</span> has2 = (s2 &gt;&gt; num2) ? <span class="literal">true</span> : <span class="literal">false</span>;   </span><br><span class="line">    <span class="comment">// 初始化第二个流，用运算符提前判定是否获取成功，而不是在while(ss&gt;&gt;num1)中进行判断，此方案会导致有数据被读取但是没有被存入ans[i]，数据流失</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (has1 &amp;&amp; has2) &#123;     <span class="comment">// 只要两个流都有数据</span></span><br><span class="line">        <span class="keyword">if</span> (num1 &lt; num2) &#123;</span><br><span class="line">            cout &lt;&lt; num1 &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            has1 = (s1 &gt;&gt; num1) ? <span class="literal">true</span> : <span class="literal">false</span>;  <span class="comment">// 读取s1的下一个数</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cout &lt;&lt; num2 &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            has2 = (s2 &gt;&gt; num2) ? <span class="literal">true</span> : <span class="literal">false</span>;  <span class="comment">// 读取s2的下一个数</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 处理剩余元素（仅一个流会有剩余）</span></span><br><span class="line">    <span class="keyword">if</span> (has1) &#123;</span><br><span class="line">        cout &lt;&lt; num1 &lt;&lt; <span class="string">&quot; &quot;</span>;  <span class="comment">// 输出当前已读取的数</span></span><br><span class="line">        <span class="keyword">while</span> (s1 &gt;&gt; num1)    <span class="comment">// 输出s1的剩余数</span></span><br><span class="line">            cout &lt;&lt; num1 &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (has2) &#123;</span><br><span class="line">        cout &lt;&lt; num2 &lt;&lt; <span class="string">&quot; &quot;</span>;  <span class="comment">// 输出当前已读取的数</span></span><br><span class="line">        <span class="keyword">while</span> (s2 &gt;&gt; num2)    <span class="comment">// 输出s2的剩余数</span></span><br><span class="line">            cout &lt;&lt; num2 &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string s1, s2;</span><br><span class="line">    <span class="built_in">getline</span>(cin, s1);</span><br><span class="line">    <span class="built_in">getline</span>(cin, s2);</span><br><span class="line">    <span class="built_in">guibing</span>(s1, s2);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>方案二：三个vector数组获取数字，不断输入，并用cin.get() &#x3D;&#x3D; ‘\n’分割两个数组，需注意vector数组如何使用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; A, B, C;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 读取顺序表A</span></span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; num) &#123;</span><br><span class="line">        A.<span class="built_in">push_back</span>(num);</span><br><span class="line">        <span class="keyword">if</span> (cin.<span class="built_in">get</span>() == <span class="string">&#x27;\n&#x27;</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 读取顺序表B</span></span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; num) &#123;</span><br><span class="line">        B.<span class="built_in">push_back</span>(num);</span><br><span class="line">        <span class="keyword">if</span> (cin.<span class="built_in">get</span>() == <span class="string">&#x27;\n&#x27;</span> || cin.<span class="built_in">eof</span>()) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 手动合并两个有序数组</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; A.<span class="built_in">size</span>() &amp;&amp; j &lt; B.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A[i] &lt;= B[j]) &#123;</span><br><span class="line">            C.<span class="built_in">push_back</span>(A[i++]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            C.<span class="built_in">push_back</span>(B[j++]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将剩余元素追加到C</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; A.<span class="built_in">size</span>()) C.<span class="built_in">push_back</span>(A[i++]);</span><br><span class="line">    <span class="keyword">while</span> (j &lt; B.<span class="built_in">size</span>()) C.<span class="built_in">push_back</span>(B[j++]);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 输出结果</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> k = <span class="number">0</span>; k &lt; C.<span class="built_in">size</span>(); ++k) &#123;</span><br><span class="line">        cout &lt;&lt; C[k];</span><br><span class="line">        <span class="keyword">if</span> (k != C.<span class="built_in">size</span>() - <span class="number">1</span>) cout &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmc7edxqr000a3krmdqnkeq4m" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/06/19/hello-world/" class="article-date">
@@ -110,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/19/hello-world/" data-id="cmc7bxm7f0007dcrm0j74fzw3" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/19/hello-world/" data-id="cmc7edxqr00093krm49fo5avc" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -158,6 +206,10 @@
       <ul>
         
           <li>
+            <a href="/2025/06/22/MST-Prim-Algorithm/">MST Prim Algorithm</a>
+          </li>
+        
+          <li>
             <a href="/2025/06/22/shortest-path/">shortest-path</a>
           </li>
         
@@ -171,10 +223,6 @@
         
           <li>
             <a href="/2025/06/21/Creation-and-Traversal-of-Binary-Trees/">Creation and Traversal of Binary Trees</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/20/String-Reverse/">String Reverse</a>
           </li>
         
       </ul>
