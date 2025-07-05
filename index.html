@@ -71,6 +71,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Find-the-Second-Smallest-Number" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/07/05/Find-the-Second-Smallest-Number/" class="article-date">
+  <time class="dt-published" datetime="2025-07-05T08:30:21.000Z" itemprop="datePublished">2025-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/07/05/Find-the-Second-Smallest-Number/">Find the Second Smallest Number</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#寻找第二小的数<br>题目描述<br>求n个整数中第二小的数。<br>相同的整数看成一个数。比如，有5个数分别是1,1,3,4,5，那么第二小的数就是3。<br>输入<br>输入包含多组测试数据。输入的第一行是一个整数C，表示有C组测试数据；<br>每组测试数据的第一行是一个整数n，表示本组测试数据有n个整数（2&lt;&#x3D;n&lt;&#x3D;10），接着一行是n个整数（每个数均小于100）。<br>输出<br>为每组测试数据输出第二小的整数，如果不存在第二小的整数则输出“NO”，每组输出占一行。<br>样例输入<br>3<br>2<br>1 2<br>5<br>1 1 3 4 5<br>3<br>1 1 1<br>样例输出<br>2<br>3<br>NO</p>
+<p>注意：<br>1、||和&amp;&amp;不要写反<br>2、最小值更新时需要转移旧值：<br>当发现新值p比当前最小值min1更小时，原代码只更新min1，没有将原最小值转移到min2</p>
+<p>例如输入序列[5, 3, 2]：</p>
+<p>处理5：min1&#x3D;5</p>
+<p>处理3：min1更新为3，但min2仍为初始值105</p>
+<p>处理2：min1更新为2，min2仍为105</p>
+<p>最终错误输出NO（正确第二小值应为3）</p>
+<p>代码展示</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Min</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">bool</span> signal;</span><br><span class="line">	<span class="type">int</span> num;</span><br><span class="line">	<span class="built_in">Min</span>():<span class="built_in">signal</span>(<span class="literal">false</span>),<span class="built_in">num</span>(<span class="number">105</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n, p, m;</span><br><span class="line">	cin &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;m;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; n;</span><br><span class="line">		Min min1, min2;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			cin &gt;&gt; p;</span><br><span class="line">			<span class="keyword">if</span> (p &lt; min<span class="number">1.</span>num)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (min<span class="number">1.</span>signal)</span><br><span class="line">				&#123;</span><br><span class="line">					min<span class="number">2.</span>signal = <span class="literal">true</span>;</span><br><span class="line">					min<span class="number">2.</span>num = min<span class="number">1.</span>num;</span><br><span class="line">				&#125;</span><br><span class="line">				min<span class="number">1.</span>signal = <span class="literal">true</span>;</span><br><span class="line">				min<span class="number">1.</span>num = p;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (p &gt; min<span class="number">1.</span>num &amp;&amp; p &lt; min<span class="number">2.</span>num)</span><br><span class="line">			&#123;</span><br><span class="line">				min<span class="number">2.</span>signal = <span class="literal">true</span>;</span><br><span class="line">				min<span class="number">2.</span>num = p;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (min<span class="number">2.</span>signal)</span><br><span class="line">			cout &lt;&lt; min<span class="number">2.</span>num &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;NO&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/07/05/Find-the-Second-Smallest-Number/" data-id="cmcpzxn8n0000w0rmeb7a0oyr" data-title="Find the Second Smallest Number" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-MST-Prim-Algorithm" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/06/22/MST-Prim-Algorithm/" class="article-date">
@@ -103,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/MST-Prim-Algorithm/" data-id="cmc7edxqn00023krm836weg9k" data-title="MST Prim Algorithm" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/MST-Prim-Algorithm/" data-id="cmcpzxn8x0008w0rmb7721d8x" data-title="MST Prim Algorithm" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -151,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/shortest-path/" data-id="cmc7edxqs000b3krmbxxzd7nt" data-title="shortest-path" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/shortest-path/" data-id="cmcpzxn8z000aw0rmc7wj1qt4" data-title="shortest-path" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -193,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmc7edxqp00043krmfega2aqd" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmcpzxn8y0009w0rm0p7g1551" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -235,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmc7edxqi00003krm2ray3wlq" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmcpzxn8t0001w0rm60b047x1" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -286,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmc7edxqm00013krmg5ky5sb1" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmcpzxn8v0003w0rm1a5309ym" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -335,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmc7edxqq00083krm8n9pgq9r" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmcpzxn92000cw0rm0eka1ca4" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -378,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmc7edxqq00073krme3sk28y3" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmcpzxn8z000bw0rmeapi3jdt" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -422,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmc7edxqp00053krmc9gbg7a3" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmcpzxn8u0002w0rm4f6weyi9" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -464,48 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmc7edxqq00063krm4ohnhjmz" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Insert-Data" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/06/20/Insert-Data/" class="article-date">
-  <time class="dt-published" datetime="2025-06-20T09:52:29.000Z" itemprop="datePublished">2025-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/06/20/Insert-Data/">Insert Data</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h1><p>6.20  数据结构作业1 B题</p>
-<p>题目描述<br>    已有一个整数序列，现在要在不同的位置插入一些整数，请输出插入数据后的序列。<br>输入<br>    第一行是N（N&lt;1000）表示原序列中元素的个数，紧接着第二行是N个整数，第三行是要插入的元素个数M（M&lt;1000）,第四开始M行，每行是一对数据k（要插入到原序列的位置，从1开始计数）和x。<br>输出<br>    输出插入元素后的整数序列。<br>样例输入 复制<br>    5<br>    1 2 3 4 5<br>    2<br>    1 11<br>    3 33<br>样例输出 复制<br>    11 1 2 33 3 4 5<br>来源&#x2F;分类<br>    线性表</p>
-<p>注意<br>1、插入位置是原表的序列位置，所以循环递归实时更改原表的结果会出现错误</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmc7edxqo00033krm9uns67mr" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmcpzxn8v0004w0rmd0pqah95" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -540,7 +545,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li></ul>
     </div>
   </div>
 
@@ -551,6 +556,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/07/05/Find-the-Second-Smallest-Number/">Find the Second Smallest Number</a>
+          </li>
         
           <li>
             <a href="/2025/06/22/MST-Prim-Algorithm/">MST Prim Algorithm</a>
@@ -566,10 +575,6 @@
         
           <li>
             <a href="/2025/06/21/Huffman-Tree/">Huffman Tree</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/21/Creation-and-Traversal-of-Binary-Trees/">Creation and Traversal of Binary Trees</a>
           </li>
         
       </ul>
