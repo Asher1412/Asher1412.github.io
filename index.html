@@ -71,6 +71,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Sort-by-the-Order-of-Each-Member" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/07/05/Sort-by-the-Order-of-Each-Member/" class="article-date">
+  <time class="dt-published" datetime="2025-07-05T10:33:29.000Z" itemprop="datePublished">2025-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/07/05/Sort-by-the-Order-of-Each-Member/">Sort by the Order of Each Member</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#按十进制各位和排序</p>
+<p>数据结构实验4  E</p>
+<p>题目描述<br>对于给定的正整数序列，按照每个数的十进制形式各个位上的数之和从大到小排序，各个位上的数和相同的按照本身大小排序，大的在前，小的在后。<br>输入<br>第一行 1 个整数 n,表示序列的大小。( 0 &lt; n ≤ 1000) 第二行 n 个正整数，表示序列的每个数，每个数不大于 100000000。<br>输出<br>输出按照题目要求排序后的序列。<br>样例输入 复制<br>6<br>17 26 9 13 88 22<br>样例输出 复制<br>88 9 26 17 22 13</p>
+<p>注意：<br>1、需要单独设定digitSum函数，否则直接在Compare函数中调用arr1数组会改变原始值<br>2、sort函数是algorithm的库函数，传参时传入自定义Compare函数作为排序标准，本题中按照题目要求自定义Compare函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算数字的各位数之和</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">digitSum</span><span class="params">(<span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (num) &#123;</span><br><span class="line">        sum += num % <span class="number">10</span>;</span><br><span class="line">        num /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">Compare</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> suma = <span class="built_in">digitSum</span>(a);  <span class="comment">// 计算a的各位数之和</span></span><br><span class="line">    <span class="type">int</span> sumb = <span class="built_in">digitSum</span>(b);  <span class="comment">// 计算b的各位数之和</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (suma != sumb)</span><br><span class="line">        <span class="keyword">return</span> suma &gt; sumb;  <span class="comment">// 和大的排在前面</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> a &gt; b;        <span class="comment">// 和相同时比较数字本身</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">arr1</span><span class="params">(n)</span></span>;  <span class="comment">// 初始化向量大小为n</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; arr1[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">sort</span>(arr<span class="number">1.</span><span class="built_in">begin</span>(), arr<span class="number">1.</span><span class="built_in">end</span>(), Compare);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span>) cout &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        cout &lt;&lt; arr1[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/07/05/Sort-by-the-Order-of-Each-Member/" data-id="cmcq4ha2o0009d4rm7f5ogdrz" data-title="Sort by the Order of Each Member" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Find-the-Second-Smallest-Number" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/07/05/Find-the-Second-Smallest-Number/" class="article-date">
@@ -105,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/07/05/Find-the-Second-Smallest-Number/" data-id="cmcpzxn8n0000w0rmeb7a0oyr" data-title="Find the Second Smallest Number" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/07/05/Find-the-Second-Smallest-Number/" data-id="cmcq4ha2a0001d4rm4a6p0r6v" data-title="Find the Second Smallest Number" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -149,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/MST-Prim-Algorithm/" data-id="cmcpzxn8x0008w0rmb7721d8x" data-title="MST Prim Algorithm" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/MST-Prim-Algorithm/" data-id="cmcq4ha2d0005d4rmde0qfuo6" data-title="MST Prim Algorithm" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -197,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/shortest-path/" data-id="cmcpzxn8z000aw0rmc7wj1qt4" data-title="shortest-path" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/shortest-path/" data-id="cmcq4ha2p000dd4rm4k7gh67k" data-title="shortest-path" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -239,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmcpzxn8y0009w0rm0p7g1551" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmcq4ha2e0007d4rm74xr09gl" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -281,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmcpzxn8t0001w0rm60b047x1" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmcq4ha2c0002d4rmguv38mg8" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -332,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmcpzxn8v0003w0rm1a5309ym" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/21/Creation-and-Traversal-of-Binary-Trees/" data-id="cmcq4ha240000d4rm3s59ckpq" data-title="Creation and Traversal of Binary Trees" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -381,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmcpzxn92000cw0rm0eka1ca4" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/String-Reverse/" data-id="cmcq4ha2o000ad4rmcxna4oav" data-title="String Reverse" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -424,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmcpzxn8z000bw0rmeapi3jdt" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Postfix-Expression-Calculation/" data-id="cmcq4ha2n0008d4rm6jnd3zjm" data-title="Postfix Expression Calculation" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -468,49 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmcpzxn8u0002w0rm4f6weyi9" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Maximum-Count" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/06/20/Maximum-Count/" class="article-date">
-  <time class="dt-published" datetime="2025-06-20T10:41:59.000Z" itemprop="datePublished">2025-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/06/20/Maximum-Count/">Maximum Count</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="最大值个数"><a href="#最大值个数" class="headerlink" title="最大值个数"></a>最大值个数</h1><p>6.20  数据结构作业1 D</p>
-<p>题目描述<br>    有一个整数单链表L，其中可能存在多个值相同的结点，设计一个算法查找L中最大值结点的个数。<br>输入<br>    单链表L中的元素，个数不定。<br>输出<br>    查找L中最大值结点的个数。<br>样例输入 复制<br>    1 2 3 4 5 5 20 20 1 2 3 4 5<br>样例输出 复制<br>    2<br>来源&#x2F;分类<br>    线性表</p>
-<p>注意：<br>1、仍然是输入流获取问题：第一遍直接采用的while(cin&gt;&gt;num)，但是输入无法判定停止。改用stringstream流<br>2、仍然是vector数组问题，注意vector类的自带函数及使用<br>3、不要被题目迷惑，这道题不一定要用链表，数组本身也是一种线性表</p>
-<p>代码展示</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; arr;</span><br><span class="line">	<span class="type">int</span> num;</span><br><span class="line">	string line;</span><br><span class="line">	<span class="built_in">getline</span>(cin, line);</span><br><span class="line">	<span class="function">stringstream <span class="title">ss</span><span class="params">(line)</span></span>;</span><br><span class="line">	<span class="keyword">while</span> (ss &gt;&gt; num)</span><br><span class="line">	&#123;</span><br><span class="line">		arr.<span class="built_in">push_back</span>(num);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> max = <span class="number">-1000</span>;<span class="type">int</span> total = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; arr.<span class="built_in">size</span>();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr[i] &gt; max)</span><br><span class="line">		&#123;</span><br><span class="line">			max = arr[i];</span><br><span class="line">			total = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (arr[i] == max) total++;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; total;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmcpzxn8v0004w0rmd0pqah95" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmcq4ha2d0004d4rmh5l09oya" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -558,6 +558,10 @@
       <ul>
         
           <li>
+            <a href="/2025/07/05/Sort-by-the-Order-of-Each-Member/">Sort by the Order of Each Member</a>
+          </li>
+        
+          <li>
             <a href="/2025/07/05/Find-the-Second-Smallest-Number/">Find the Second Smallest Number</a>
           </li>
         
@@ -571,10 +575,6 @@
         
           <li>
             <a href="/2025/06/22/Parentheses-mismatch-check/">Parentheses mismatch check</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/21/Huffman-Tree/">Huffman Tree</a>
           </li>
         
       </ul>
