@@ -71,6 +71,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Josephus-Sequence" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/06/20/Josephus-Sequence/" class="article-date">
+  <time class="dt-published" datetime="2025-06-20T11:19:59.000Z" itemprop="datePublished">2025-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/06/20/Josephus-Sequence/">Josephus Sequence</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="约瑟夫环"><a href="#约瑟夫环" class="headerlink" title="约瑟夫环"></a>约瑟夫环</h1><p>6.20   数据结构作业1 E</p>
+<p>题目描述<br>编写一个程序求解约瑟夫（Joseph）问题。有n个小孩围成一圈，给他们从1开始依次编号，从编号为1的小孩开始报数，数到第m（0&lt;m&lt;n）个小孩出列，然后从出列的下一个小孩重新开始报数，数到第m个小孩又出列，…，如此反复直到所有的小孩全部出列为止，求整个出列序列。</p>
+<p>输入<br>占一行为n和m（n&lt;100）。<br>输出<br>整个出列序列。<br>样例输入 复制<br>6 5</p>
+<p>样例输出 复制<br>5 4 6 2 3 1<br>来源&#x2F;分类<br>链表</p>
+<p>注意：<br>1、循环链表头指针尾指针的构建<br>2、循环时p指针和pre指针的移动</p>
+<p>代码展示</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> data;</span><br><span class="line">	Node* next;</span><br><span class="line">	<span class="built_in">Node</span>():<span class="built_in">next</span>(<span class="literal">NULL</span>)&#123;&#125;</span><br><span class="line">	<span class="built_in">Node</span>(<span class="type">int</span> d):<span class="built_in">data</span>(d),<span class="built_in">next</span>(<span class="literal">NULL</span>)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">List</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Node* head;</span><br><span class="line">	Node* tail;</span><br><span class="line">	<span class="built_in">List</span>():<span class="built_in">head</span>(<span class="literal">NULL</span>),<span class="built_in">tail</span>(<span class="literal">NULL</span>)&#123;&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">CreateList</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Node* p;</span><br><span class="line">		<span class="keyword">if</span> (head == <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			p = <span class="keyword">new</span> <span class="built_in">Node</span>(<span class="number">1</span>);</span><br><span class="line">			head = p;</span><br><span class="line">			tail = p;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>;i &lt;= n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			p = <span class="keyword">new</span> <span class="built_in">Node</span>(i);</span><br><span class="line">			tail-&gt;next = p;</span><br><span class="line">			tail = p;</span><br><span class="line">		&#125;</span><br><span class="line">		tail-&gt;next = head;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Joseph</span><span class="params">(<span class="type">int</span> m)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Node* pre = tail;</span><br><span class="line">		Node* p = head;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> i;</span><br><span class="line">			<span class="keyword">if</span> (pre == p)</span><br><span class="line">			&#123;</span><br><span class="line">				cout &lt;&lt; p-&gt;data;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span> (i = <span class="number">1</span>;i &lt; m;i++)</span><br><span class="line">			&#123;</span><br><span class="line">				pre = pre-&gt;next;</span><br><span class="line">				p = p-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			pre-&gt;next = p-&gt;next;</span><br><span class="line">			cout &lt;&lt; p-&gt;data &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">			<span class="keyword">delete</span> p;</span><br><span class="line">			p = pre-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n, m;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	List list;</span><br><span class="line">	list.<span class="built_in">CreateList</span>(n);</span><br><span class="line">	list.<span class="built_in">Joseph</span>(m);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/06/20/Josephus-Sequence/" data-id="cmcq5tbn80004jgrm6x5fgzx2" data-title="Josephus Sequence" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Maximum-Count" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/06/20/Maximum-Count/" class="article-date">
@@ -101,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmcq4ha2e0006d4rm32trdfmd" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Maximum-Count/" data-id="cmcq5tbn90006jgrmhj939f79" data-title="Maximum Count" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -142,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmcq4ha2c0003d4rm4toggmrs" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/Insert-Data/" data-id="cmcq5tbn80003jgrme9zgeer0" data-title="Insert Data" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -190,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmcq4ha2p000cd4rma3xjg4pu" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/20/my-first-blog/" data-id="cmcq5tbnc000djgrmhair9cdh" data-title="my first blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -241,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/19/hello-world/" data-id="cmcq4ha2p000bd4rmg6rxgkst" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/19/hello-world/" data-id="cmcq5tbnc000cjgrm06wyav1q" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -289,6 +333,10 @@
       <ul>
         
           <li>
+            <a href="/2025/07/05/Sorting-of-Odd-and-Even-Numbers/">Sorting of Odd and Even Numbers</a>
+          </li>
+        
+          <li>
             <a href="/2025/07/05/Sort-by-the-Order-of-Each-Member/">Sort by the Order of Each Member</a>
           </li>
         
@@ -302,10 +350,6 @@
         
           <li>
             <a href="/2025/06/22/shortest-path/">shortest-path</a>
-          </li>
-        
-          <li>
-            <a href="/2025/06/22/Parentheses-mismatch-check/">Parentheses mismatch check</a>
           </li>
         
       </ul>
