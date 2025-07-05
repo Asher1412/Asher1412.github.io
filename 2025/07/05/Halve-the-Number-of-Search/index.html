@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Halve the Number of Search | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="#折半查找的次数 数据结构作业三 C 题目描述给你一个无重复数的有序序列，如果采用折半查找的方式，对于给定的数，需要比较几次找到，请编程实现。输入第一行是N，表示序列中数的个数，序列最长1000，第二行是一个有序序列，第三行是要找的数x。输出如果找到x，输出折半比较的次数，否则输出NO。样例输入 复制115 13 19 21 37 56 64 75 80 88 9219样例输出 复制2 注意：1、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Halve the Number of Search">
+<meta property="og:url" content="http://example.com/2025/07/05/Halve-the-Number-of-Search/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#折半查找的次数 数据结构作业三 C 题目描述给你一个无重复数的有序序列，如果采用折半查找的方式，对于给定的数，需要比较几次找到，请编程实现。输入第一行是N，表示序列中数的个数，序列最长1000，第二行是一个有序序列，第三行是要找的数x。输出如果找到x，输出折半比较的次数，否则输出NO。样例输入 复制115 13 19 21 37 56 64 75 80 88 9219样例输出 复制2 注意：1、">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-07-05T11:58:11.000Z">
+<meta property="article:modified_time" content="2025-07-05T12:02:27.052Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Halve-the-Number-of-Search" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/07/05/Halve-the-Number-of-Search/" class="article-date">
+  <time class="dt-published" datetime="2025-07-05T11:58:11.000Z" itemprop="datePublished">2025-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Halve the Number of Search
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#折半查找的次数</p>
+<p>数据结构作业三 C</p>
+<p>题目描述<br>给你一个无重复数的有序序列，如果采用折半查找的方式，对于给定的数，需要比较几次找到，请编程实现。<br>输入<br>第一行是N，表示序列中数的个数，序列最长1000，第二行是一个有序序列，第三行是要找的数x。<br>输出<br>如果找到x，输出折半比较的次数，否则输出NO。<br>样例输入 复制<br>11<br>5 13 19 21 37 56 64 75 80 88 92<br>19<br>样例输出 复制<br>2</p>
+<p>注意：<br>1、最好不要把变量命名为count，可能会遇到关键字<br>2、vector动态数组添加元素用push_back()函数</p>
+<p>代码展示</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">BinSearch1</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; R, <span class="type">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> len = R.<span class="built_in">size</span>();</span><br><span class="line">	<span class="type">int</span> low = <span class="number">0</span>, high = len - <span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> con = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (low &lt;= high)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">		con++;</span><br><span class="line">		<span class="keyword">if</span> (k == R[mid])</span><br><span class="line">			<span class="keyword">return</span> con;</span><br><span class="line">		<span class="keyword">if</span> (k &lt; R[mid])</span><br><span class="line">			high = mid - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			low = mid + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; arr;<span class="type">int</span> num;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; num;</span><br><span class="line">		arr.<span class="built_in">push_back</span>(num);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> target;</span><br><span class="line">	cin &gt;&gt; target;</span><br><span class="line">	<span class="type">int</span> ans = <span class="built_in">BinSearch1</span>(arr, target);</span><br><span class="line">	<span class="keyword">if</span> (ans == <span class="number">-1</span>)</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;NO&quot;</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		cout &lt;&lt; ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/07/05/Halve-the-Number-of-Search/" data-id="cmcq71ygz0002pkrmet8rh1rf" data-title="Halve the Number of Search" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/07/05/Sorting-of-Odd-and-Even-Numbers/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Sorting of Odd and Even Numbers</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/07/05/Halve-the-Number-of-Search/">Halve the Number of Search</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/05/Sorting-of-Odd-and-Even-Numbers/">Sorting of Odd and Even Numbers</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/05/Sort-by-the-Order-of-Each-Member/">Sort by the Order of Each Member</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/05/Find-the-Second-Smallest-Number/">Find the Second Smallest Number</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/22/MST-Prim-Algorithm/">MST Prim Algorithm</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
