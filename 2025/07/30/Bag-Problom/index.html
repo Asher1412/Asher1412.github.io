@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Bag Problom | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="P2240 【深基12.例1】部分背包问题题目描述阿里巴巴走进了装满宝藏的藏宝洞。藏宝洞里面有 $N(N \le 100)$ 堆金币，第 $i$ 堆金币的总重量和总价值分别是 $m_i,v_i(1\le m_i,v_i \le 100)$。阿里巴巴有一个承重量为 $T(T \le 1000)$ 的背包，但并不一定有办法将全部的金币都装进去。他想装走尽可能多价值的金币。所有金币都可以随意分割，分割完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bag Problom">
+<meta property="og:url" content="http://example.com/2025/07/30/Bag-Problom/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="P2240 【深基12.例1】部分背包问题题目描述阿里巴巴走进了装满宝藏的藏宝洞。藏宝洞里面有 $N(N \le 100)$ 堆金币，第 $i$ 堆金币的总重量和总价值分别是 $m_i,v_i(1\le m_i,v_i \le 100)$。阿里巴巴有一个承重量为 $T(T \le 1000)$ 的背包，但并不一定有办法将全部的金币都装进去。他想装走尽可能多价值的金币。所有金币都可以随意分割，分割完">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-07-30T06:46:36.000Z">
+<meta property="article:modified_time" content="2025-08-04T01:23:50.199Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Bag-Problom" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/07/30/Bag-Problom/" class="article-date">
+  <time class="dt-published" datetime="2025-07-30T06:46:36.000Z" itemprop="datePublished">2025-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Bag Problom
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="P2240-【深基12-例1】部分背包问题"><a href="#P2240-【深基12-例1】部分背包问题" class="headerlink" title="P2240 【深基12.例1】部分背包问题"></a>P2240 【深基12.例1】部分背包问题</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>阿里巴巴走进了装满宝藏的藏宝洞。藏宝洞里面有 $N(N \le 100)$ 堆金币，第 $i$ 堆金币的总重量和总价值分别是 $m_i,v_i(1\le m_i,v_i \le 100)$。阿里巴巴有一个承重量为 $T(T \le 1000)$ 的背包，但并不一定有办法将全部的金币都装进去。他想装走尽可能多价值的金币。所有金币都可以随意分割，分割完的金币重量价值比（也就是单位价格）不变。请问阿里巴巴最多可以拿走多少价值的金币？</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行两个整数 $N,T$。</p>
+<p>接下来 $N$ 行，每行两个整数 $m_i,v_i$。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一个实数表示答案，输出两位小数</p>
+<h2 id="输入输出样例-1"><a href="#输入输出样例-1" class="headerlink" title="输入输出样例 #1"></a>输入输出样例 #1</h2><h3 id="输入-1"><a href="#输入-1" class="headerlink" title="输入 #1"></a>输入 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 50</span><br><span class="line">10 60</span><br><span class="line">20 100</span><br><span class="line">30 120</span><br><span class="line">15 45</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出-1"><a href="#输出-1" class="headerlink" title="输出 #1"></a>输出 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">240.00</span><br></pre></td></tr></table></figure>
+
+<p>注意：<br>1、使用double类+强制转换<br>2、使用-1标识已经加入背包，防止陷入死循环</p>
+<p>代码展示：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> total = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> volume = <span class="number">0</span>;</span><br><span class="line">    cin &gt;&gt; total &gt;&gt; volume;</span><br><span class="line">    <span class="type">double</span> jinbi[<span class="number">100</span>][<span class="number">3</span>]; <span class="comment">// [0]:重量 [1]:价值 [2]:单位价值</span></span><br><span class="line">    <span class="type">int</span> a, b;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; total; i++) &#123;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        jinbi[i][<span class="number">0</span>] = a;</span><br><span class="line">        jinbi[i][<span class="number">1</span>] = b;</span><br><span class="line">        jinbi[i][<span class="number">2</span>] = (<span class="type">double</span>)b / a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">double</span> temp = <span class="number">0</span>; <span class="comment">// 当前已装重量</span></span><br><span class="line">    <span class="type">double</span> ans = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (temp &lt; volume) &#123;</span><br><span class="line">        <span class="type">double</span> max_val = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> j = <span class="number">-1</span>; <span class="comment">// 记录找到的最大单位价值金币堆的索引</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 查找当前单位价值最高的可用金币堆</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; total; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (jinbi[i][<span class="number">0</span>] &gt; <span class="number">0</span> &amp;&amp; jinbi[i][<span class="number">2</span>] &gt; max_val) &#123;</span><br><span class="line">                max_val = jinbi[i][<span class="number">2</span>];</span><br><span class="line">                j = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果没有找到可用的金币堆，提前结束</span></span><br><span class="line">        <span class="keyword">if</span> (j == <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果当前堆可以完整装入背包</span></span><br><span class="line">        <span class="keyword">if</span> (temp + jinbi[j][<span class="number">0</span>] &lt;= volume) &#123;</span><br><span class="line">            temp += jinbi[j][<span class="number">0</span>];</span><br><span class="line">            ans += jinbi[j][<span class="number">1</span>];</span><br><span class="line">            jinbi[j][<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 标记该堆已用完</span></span><br><span class="line">        &#125; </span><br><span class="line">        <span class="comment">// 如果只能装入部分</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">double</span> remain = volume - temp; <span class="comment">// 剩余背包空间</span></span><br><span class="line">            ans += jinbi[j][<span class="number">2</span>] * remain;   <span class="comment">// 装入部分金币</span></span><br><span class="line">            temp = volume;                 <span class="comment">// 背包已满</span></span><br><span class="line">            <span class="comment">// 不需要标记为0，因为部分使用后该堆还有剩余</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.2f&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/07/30/Bag-Problom/" data-id="cmdwfgskr0001v0rm84legf44" data-title="Bag Problom" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/08/04/VScode-Test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          VScode Test
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/07/05/Class-Member-Information-Inquiry/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Class Member Information Inquiry</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/04/VScode-Test/">VScode Test</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/30/Bag-Problom/">Bag Problom</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/05/Class-Member-Information-Inquiry/">Class Member Information Inquiry</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/05/Sorting-of-N-Numbers/">Sorting of N Numbers</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/05/Halve-the-Number-of-Search/">Halve the Number of Search</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -71,6 +71,98 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-VScode-Test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/08/04/VScode-Test/" class="article-date">
+  <time class="dt-published" datetime="2025-08-04T01:11:57.000Z" itemprop="datePublished">2025-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/08/04/VScode-Test/">VScode Test</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#VScode C++环境配置</p>
+<p>VScode需要从头开始配置本地编译器，再将本地编译器配置到VScode上面<br>VScode配置虽然很麻烦吧，但是内置教程还是比较详细的，好好跟着教程走就可以了<br>到了一个新的编译环境，需要几天先熟悉一下环境，熟悉之后一切就都简单了</p>
+<p>PS：不要手欠删文件！！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/08/04/VScode-Test/" data-id="cmdwfgsky000gv0rmgwk094r7" data-title="VScode Test" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Bag-Problom" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/07/30/Bag-Problom/" class="article-date">
+  <time class="dt-published" datetime="2025-07-30T06:46:36.000Z" itemprop="datePublished">2025-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/07/30/Bag-Problom/">Bag Problom</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="P2240-【深基12-例1】部分背包问题"><a href="#P2240-【深基12-例1】部分背包问题" class="headerlink" title="P2240 【深基12.例1】部分背包问题"></a>P2240 【深基12.例1】部分背包问题</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>阿里巴巴走进了装满宝藏的藏宝洞。藏宝洞里面有 $N(N \le 100)$ 堆金币，第 $i$ 堆金币的总重量和总价值分别是 $m_i,v_i(1\le m_i,v_i \le 100)$。阿里巴巴有一个承重量为 $T(T \le 1000)$ 的背包，但并不一定有办法将全部的金币都装进去。他想装走尽可能多价值的金币。所有金币都可以随意分割，分割完的金币重量价值比（也就是单位价格）不变。请问阿里巴巴最多可以拿走多少价值的金币？</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行两个整数 $N,T$。</p>
+<p>接下来 $N$ 行，每行两个整数 $m_i,v_i$。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一个实数表示答案，输出两位小数</p>
+<h2 id="输入输出样例-1"><a href="#输入输出样例-1" class="headerlink" title="输入输出样例 #1"></a>输入输出样例 #1</h2><h3 id="输入-1"><a href="#输入-1" class="headerlink" title="输入 #1"></a>输入 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 50</span><br><span class="line">10 60</span><br><span class="line">20 100</span><br><span class="line">30 120</span><br><span class="line">15 45</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出-1"><a href="#输出-1" class="headerlink" title="输出 #1"></a>输出 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">240.00</span><br></pre></td></tr></table></figure>
+
+<p>注意：<br>1、使用double类+强制转换<br>2、使用-1标识已经加入背包，防止陷入死循环</p>
+<p>代码展示：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> total = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> volume = <span class="number">0</span>;</span><br><span class="line">    cin &gt;&gt; total &gt;&gt; volume;</span><br><span class="line">    <span class="type">double</span> jinbi[<span class="number">100</span>][<span class="number">3</span>]; <span class="comment">// [0]:重量 [1]:价值 [2]:单位价值</span></span><br><span class="line">    <span class="type">int</span> a, b;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; total; i++) &#123;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        jinbi[i][<span class="number">0</span>] = a;</span><br><span class="line">        jinbi[i][<span class="number">1</span>] = b;</span><br><span class="line">        jinbi[i][<span class="number">2</span>] = (<span class="type">double</span>)b / a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">double</span> temp = <span class="number">0</span>; <span class="comment">// 当前已装重量</span></span><br><span class="line">    <span class="type">double</span> ans = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (temp &lt; volume) &#123;</span><br><span class="line">        <span class="type">double</span> max_val = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> j = <span class="number">-1</span>; <span class="comment">// 记录找到的最大单位价值金币堆的索引</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 查找当前单位价值最高的可用金币堆</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; total; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (jinbi[i][<span class="number">0</span>] &gt; <span class="number">0</span> &amp;&amp; jinbi[i][<span class="number">2</span>] &gt; max_val) &#123;</span><br><span class="line">                max_val = jinbi[i][<span class="number">2</span>];</span><br><span class="line">                j = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果没有找到可用的金币堆，提前结束</span></span><br><span class="line">        <span class="keyword">if</span> (j == <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果当前堆可以完整装入背包</span></span><br><span class="line">        <span class="keyword">if</span> (temp + jinbi[j][<span class="number">0</span>] &lt;= volume) &#123;</span><br><span class="line">            temp += jinbi[j][<span class="number">0</span>];</span><br><span class="line">            ans += jinbi[j][<span class="number">1</span>];</span><br><span class="line">            jinbi[j][<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 标记该堆已用完</span></span><br><span class="line">        &#125; </span><br><span class="line">        <span class="comment">// 如果只能装入部分</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">double</span> remain = volume - temp; <span class="comment">// 剩余背包空间</span></span><br><span class="line">            ans += jinbi[j][<span class="number">2</span>] * remain;   <span class="comment">// 装入部分金币</span></span><br><span class="line">            temp = volume;                 <span class="comment">// 背包已满</span></span><br><span class="line">            <span class="comment">// 不需要标记为0，因为部分使用后该堆还有剩余</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.2f&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/07/30/Bag-Problom/" data-id="cmdwfgskr0001v0rm84legf44" data-title="Bag Problom" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Class-Member-Information-Inquiry" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/07/05/Class-Member-Information-Inquiry/" class="article-date">
@@ -102,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/07/05/Class-Member-Information-Inquiry/" data-id="cmdwf98qn0001a4rm8x3q0ant" data-title="Class Member Information Inquiry" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/07/05/Class-Member-Information-Inquiry/" data-id="cmdwfgsko0000v0rm4umt1tea" data-title="Class Member Information Inquiry" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -140,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/07/05/Sorting-of-N-Numbers/" data-id="cmdwf98qu000da4rmfhji9o5o" data-title="Sorting of N Numbers" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/07/05/Sorting-of-N-Numbers/" data-id="cmdwfgskx000dv0rme4lba9ni" data-title="Sorting of N Numbers" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -183,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/07/05/Halve-the-Number-of-Search/" data-id="cmdwf98qo0002a4rm3d0xcwhn" data-title="Halve the Number of Search" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/07/05/Halve-the-Number-of-Search/" data-id="cmdwfgsku0006v0rma5odblio" data-title="Halve the Number of Search" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -225,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/07/05/Sorting-of-Odd-and-Even-Numbers/" data-id="cmdwf98qv000ha4rmeeuj559u" data-title="Sorting of Odd and Even Numbers" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/07/05/Sorting-of-Odd-and-Even-Numbers/" data-id="cmdwfgskx000ev0rmhtj6f4ws" data-title="Sorting of Odd and Even Numbers" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -267,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/07/05/Sort-by-the-Order-of-Each-Member/" data-id="cmdwf98qu000ga4rmhppggcjm" data-title="Sort by the Order of Each Member" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/07/05/Sort-by-the-Order-of-Each-Member/" data-id="cmdwfgskx000cv0rm6hbpa5f3" data-title="Sort by the Order of Each Member" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -313,7 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/07/05/Find-the-Second-Smallest-Number/" data-id="cmdwf98qg0000a4rmdicpd58f" data-title="Find the Second Smallest Number" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/07/05/Find-the-Second-Smallest-Number/" data-id="cmdwfgsku0005v0rmavp78qna" data-title="Find the Second Smallest Number" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -357,7 +449,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/MST-Prim-Algorithm/" data-id="cmdwf98qr0007a4rm2heu6eja" data-title="MST Prim Algorithm" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/MST-Prim-Algorithm/" data-id="cmdwfgskv0008v0rm1a73b780" data-title="MST Prim Algorithm" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -405,91 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/shortest-path/" data-id="cmdwf98qu000fa4rm35ba7i81" data-title="shortest-path" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Parentheses-mismatch-check" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/06/22/Parentheses-mismatch-check/" class="article-date">
-  <time class="dt-published" datetime="2025-06-22T06:37:08.000Z" itemprop="datePublished">2025-06-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/06/22/Parentheses-mismatch-check/">Parentheses mismatch check</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="括号配对"><a href="#括号配对" class="headerlink" title="括号配对"></a>括号配对</h1><p>6.20  数据结构作业1 F</p>
-<p>题目描述<br>设计一个算法利用顺序栈检查用户输入的表达式中括号是否配对（假设表达式中可能含有圆括号()、中括号[]和大括号{}）。<br>输入<br>占一行为含有三种括号的表达式（最长100个符号）。<br>输出<br>匹配时输出YES，小括号不匹配输出NO1，中括号不匹配时输出NO2，大括号不匹配时输出NO3。<br>样例输入<br>{([a])}<br>样例输出<br>YES<br>来源&#x2F;分类<br>栈</p>
-<p>注意：</p>
-<p>代码展示</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">kuohao</span><span class="params">(string s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    stack &lt;<span class="type">char</span>&gt;st;</span><br><span class="line">    <span class="type">char</span> ch, e;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, k = <span class="number">0</span>;<span class="comment">//用k判断是否空栈，若栈空，则k=1</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; s.<span class="built_in">length</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        ch = s[i];</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">&#x27;(&#x27;</span> || ch == <span class="string">&#x27;&#123;&#x27;</span> || ch == <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">            st.<span class="built_in">push</span>(ch);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (st.<span class="built_in">empty</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;]&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;&#125;&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!st.<span class="built_in">empty</span>() &amp;&amp; st.<span class="built_in">top</span>() == <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!st.<span class="built_in">empty</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                e = st.<span class="built_in">top</span>();</span><br><span class="line">                k = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;]&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!st.<span class="built_in">empty</span>() &amp;&amp; st.<span class="built_in">top</span>() == <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!st.<span class="built_in">empty</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                e = st.<span class="built_in">top</span>();</span><br><span class="line">                k = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;&#125;&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!st.<span class="built_in">empty</span>() &amp;&amp; st.<span class="built_in">top</span>() == <span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!st.<span class="built_in">empty</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                e = st.<span class="built_in">top</span>();</span><br><span class="line">                k = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (e == <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (e == <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (e == <span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (st.<span class="built_in">empty</span>() &amp;&amp; i == s.<span class="built_in">length</span>())</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        e = st.<span class="built_in">top</span>();</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (e == <span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    <span class="type">int</span> m = <span class="built_in">kuohao</span>(s);</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">4</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;YES&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">1</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;NO1&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">2</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;NO2&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (m == <span class="number">3</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;NO3&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/22/Parentheses-mismatch-check/" data-id="cmdwf98qs0009a4rm9q14ex8s" data-title="Parentheses mismatch check" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Huffman-Tree" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/06/21/Huffman-Tree/" class="article-date">
-  <time class="dt-published" datetime="2025-06-21T07:37:29.000Z" itemprop="datePublished">2025-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/06/21/Huffman-Tree/">Huffman Tree</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="哈夫曼树-BFS遍历"><a href="#哈夫曼树-BFS遍历" class="headerlink" title="哈夫曼树+BFS遍历"></a>哈夫曼树+BFS遍历</h1><p>6.21  数据结构实践3 B</p>
-<p>题目描述<br>哈夫曼树，第一行输入一个数n，表示叶结点的个数。需要用这些叶结点生成哈夫曼树，根据哈夫曼树的概念，这些结点有权值，即weight，题目需要输出所有叶子结点的路径长度与权值的乘积之和。<br>输入<br>输入有多组数据。<br>每组第一行输入一个数n，接着输入n个叶节点（叶节点权值不超过100，2&lt;&#x3D;n&lt;&#x3D;1000）。<br>输出<br>输出权值。<br>样例输入<br>2<br>2 8<br>3<br>5 11 30<br>样例输出<br>10<br>62</p>
-<p>注意：<br>1、哈夫曼树的构建过程中需要两种结构体，一个作为哈夫曼树的结点另一个作为优先队列的元素，不要混淆<br>2、树的结构构建没有通过链表指针完成，而是通过树结点数组加父结点子节点数组编号记录完成的<br>3、哈夫曼树的路径长度由层次遍历，广度优先搜索（BFS）算法完成的</p>
-<p>代码展示</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span> <span class="comment">// 用于字符处理</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HTNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> distance;</span><br><span class="line">    <span class="type">double</span> weight;</span><br><span class="line">    <span class="type">int</span> parent;</span><br><span class="line">    <span class="type">int</span> lchild;</span><br><span class="line">    <span class="type">int</span> rchild;</span><br><span class="line">    <span class="type">bool</span> flag;</span><br><span class="line">    <span class="built_in">HTNode</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        parent = <span class="number">-1</span>;</span><br><span class="line">        lchild = rchild = <span class="number">-1</span>;</span><br><span class="line">        distance = <span class="number">0</span>;  <span class="comment">// 确保默认初始化为0</span></span><br><span class="line">        weight = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">HTNode</span>(<span class="type">int</span> d, <span class="type">double</span> w)</span><br><span class="line">    &#123;</span><br><span class="line">        distance = d;</span><br><span class="line">        weight = w;</span><br><span class="line">        parent = lchild = rchild = <span class="number">-1</span>;</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">HeapNode</span> &#123;</span><br><span class="line">    <span class="type">double</span> weight;</span><br><span class="line">    <span class="type">int</span> number;</span><br><span class="line">    <span class="built_in">HeapNode</span>(<span class="type">double</span> w1, <span class="type">int</span> i1) : <span class="built_in">weight</span>(w1), <span class="built_in">number</span>(i1) &#123;&#125;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> HeapNode&amp; s) <span class="type">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> weight &gt; s.weight;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CreateHT</span><span class="params">(<span class="type">int</span> n, HTNode* ht)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    priority_queue&lt;HeapNode&gt; qu;</span><br><span class="line">    string str;</span><br><span class="line">    <span class="built_in">getline</span>(cin, str);</span><br><span class="line">    <span class="function">stringstream <span class="title">ss</span><span class="params">(str)</span></span>;</span><br><span class="line">    <span class="type">double</span> num;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化叶子节点</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ss &gt;&gt; num;</span><br><span class="line">        ht[i] = <span class="built_in">HTNode</span>(<span class="number">0</span>, num); <span class="comment">// 初始路径长度为0</span></span><br><span class="line">        qu.<span class="built_in">push</span>(<span class="built_in">HeapNode</span>(num, i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构建哈夫曼树</span></span><br><span class="line">    <span class="keyword">for</span> (i = n; i &lt; <span class="number">2</span> * n - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        HeapNode p1 = qu.<span class="built_in">top</span>(); qu.<span class="built_in">pop</span>();</span><br><span class="line">        HeapNode p2 = qu.<span class="built_in">top</span>(); qu.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建新节点（父节点）</span></span><br><span class="line">        ht[i] = <span class="built_in">HTNode</span>(); <span class="comment">// 使用默认构造函数</span></span><br><span class="line">        ht[i].weight = ht[p<span class="number">1.</span>number].weight + ht[p<span class="number">2.</span>number].weight;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置父子关系</span></span><br><span class="line">        ht[p<span class="number">1.</span>number].parent = i;</span><br><span class="line">        ht[i].lchild = p<span class="number">1.</span>number;</span><br><span class="line">        ht[p<span class="number">1.</span>number].flag = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        ht[p<span class="number">2.</span>number].parent = i;</span><br><span class="line">        ht[i].rchild = p<span class="number">2.</span>number;</span><br><span class="line">        ht[p<span class="number">2.</span>number].flag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        qu.<span class="built_in">push</span>(<span class="built_in">HeapNode</span>(ht[i].weight, i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用BFS计算从根节点到每个节点的距离</span></span><br><span class="line">    <span class="type">int</span> root = <span class="number">2</span> * n - <span class="number">2</span>; <span class="comment">// 根节点索引</span></span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    q.<span class="built_in">push</span>(root);</span><br><span class="line">    ht[root].distance = <span class="number">0</span>; <span class="comment">// 根节点距离为0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="type">int</span> current = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理左孩子</span></span><br><span class="line">        <span class="keyword">if</span> (ht[current].lchild != <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> left = ht[current].lchild;</span><br><span class="line">            ht[left].distance = ht[current].distance + <span class="number">1</span>;</span><br><span class="line">            q.<span class="built_in">push</span>(left);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理右孩子</span></span><br><span class="line">        <span class="keyword">if</span> (ht[current].rchild != <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> right = ht[current].rchild;</span><br><span class="line">            ht[right].distance = ht[current].distance + <span class="number">1</span>;</span><br><span class="line">            q.<span class="built_in">push</span>(right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; n) &#123;</span><br><span class="line">        cin.<span class="built_in">ignore</span>();  <span class="comment">// 忽略换行符</span></span><br><span class="line">        HTNode* ht = <span class="keyword">new</span> HTNode[<span class="number">2</span> * n - <span class="number">1</span>];  <span class="comment">// 哈夫曼树节点数为2n-1</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">CreateHT</span>(n, ht);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 计算所有叶子节点的带权路径长度之和</span></span><br><span class="line">        <span class="type">double</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            sum += ht[i].weight * ht[i].distance;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出整数结果（假设权重为整数）</span></span><br><span class="line">        cout &lt;&lt; <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(sum) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">delete</span>[] ht;  <span class="comment">// 释放内存</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/21/Huffman-Tree/" data-id="cmdwf98qq0006a4rmf5zkfa6k" data-title="Huffman Tree" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/06/22/shortest-path/" data-id="cmdwfgskz000jv0rm5u908l6k" data-title="shortest-path" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -524,7 +532,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a></li></ul>
     </div>
   </div>
 
@@ -537,6 +545,14 @@
       <ul>
         
           <li>
+            <a href="/2025/08/04/VScode-Test/">VScode Test</a>
+          </li>
+        
+          <li>
+            <a href="/2025/07/30/Bag-Problom/">Bag Problom</a>
+          </li>
+        
+          <li>
             <a href="/2025/07/05/Class-Member-Information-Inquiry/">Class Member Information Inquiry</a>
           </li>
         
@@ -546,14 +562,6 @@
         
           <li>
             <a href="/2025/07/05/Halve-the-Number-of-Search/">Halve the Number of Search</a>
-          </li>
-        
-          <li>
-            <a href="/2025/07/05/Sorting-of-Odd-and-Even-Numbers/">Sorting of Odd and Even Numbers</a>
-          </li>
-        
-          <li>
-            <a href="/2025/07/05/Sort-by-the-Order-of-Each-Member/">Sort by the Order of Each Member</a>
           </li>
         
       </ul>
